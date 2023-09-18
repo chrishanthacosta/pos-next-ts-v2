@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model users{
+  userid       Int      @id @default(autoincrement())
+  staffid Int 
+  username String   
+  password String
+  role String @default("user")
+  createdAt DateTime @default(now())
+}
+
+model staff{
+  staffid       Int      @id @default(autoincrement())
+  staffname String   
+  contracttype String   
+  contactno    String   
+  nic String
+  designation String @default("user")
+  createdAt DateTime @default(now())
+}
+
+model categories{
+  categoryid       Int      @id @default(autoincrement())
+  categoryname String   
+}
+
+model subcategories{
+  subcategoryid       Int      @id @default(autoincrement())
+  categoryid Int
+  subcategoryname String   
+}
+
+model brands{
+  brandid       Int      @id @default(autoincrement())
+  brandname String   
+}
+
+model units{
+  unitid       Int      @id @default(autoincrement())
+  unit String   
+}
+
+model items{
+  itemcode       Int      @id @default(autoincrement())
+  extraitemcode String   
+  barcode String   
+  itemname String   
+  category Int   
+  subcategory Int   
+  brand Int   
+  retailsalesprice String
+  retailautosalesprice Boolean
+  retailpricechange Boolean
+  retailmarkup String
+  smallwholesalesprice String
+  smallwholeautosalesprice Boolean
+  smallwholepricechange Boolean
+  smallwholemarkup String
+  largewholesalesprice String
+  largewholeautosalesprice Boolean
+  largewholepricechange Boolean
+  largewholemarkup String 
+  cost String   
+  stockcontrol Boolean   
+  currentstock String   
+  stocklimit String   
+  unit String   
+  netweight String   
+  grossweight String   
+  location String   
+}
